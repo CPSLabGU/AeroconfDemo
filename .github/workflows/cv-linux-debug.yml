@@ -37,5 +37,9 @@ jobs:
         run: scp root@zybo.local:~/0.xml .
 
       - name: Perform Verification
-        run: verifyta 0.xml 0.xml.q
+        run: |
+          OUTPUT=`verifyta 0.xml 0.xml.q`
+          echo $OUTPUT
+          RESULT=`echo $OUTPUT | grep NOT`
+          if [ -n "$RESULT" ]; then exit 1; fi
 
