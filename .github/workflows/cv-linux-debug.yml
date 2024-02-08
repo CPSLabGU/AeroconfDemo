@@ -38,7 +38,7 @@ jobs:
 
       - name: Perform Verification
         run: |
-          echo "OUTPUT=`verifyta 0.xml 0.xml.q --summary`" >> "$GITHUB_ENV"
+          echo "OUTPUT=\"`verifyta 0.xml 0.xml.q --summary`\"" >> "$GITHUB_ENV"
           echo "RESULT=`echo $OUTPUT | grep NOT`" > "$GITHUB_ENV"
           # if [ -n $RESULT ]; then exit 1; fi
 
