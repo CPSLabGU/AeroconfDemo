@@ -38,8 +38,8 @@ jobs:
 
       - name: Perform Verification
         run: |
-          OUTPUT=`verifyta 0.xml 0.xml.q`
+          OUTPUT=`verifyta 0.xml 0.xml.q --summary`
           echo $OUTPUT
           RESULT=`echo $OUTPUT | grep NOT`
-          if [ -n "$RESULT" ]; then exit 1; fi
+          if [ -n $RESULT ]; then exit 1; fi
 
