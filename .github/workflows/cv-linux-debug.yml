@@ -37,9 +37,11 @@ jobs:
         run: scp root@zybo.local:~/0.xml .
 
       - name: Perform Verification
+        id: verify
         run: |
-          echo "OUTPUT=\"`verifyta 0.xml 0.xml.q --summary`\"" >> "$GITHUB_ENV"
+          echo "OUTPUT=`verifyta 0.xml 0.xml.q --summary`" >> "$GITHUB_OUTPUT"
           echo "RESULT=`echo $OUTPUT | grep NOT`" > "$GITHUB_ENV"
+          echo "${{ steps.verify.outputs.OUTPUT }}"
           # if [ -n $RESULT ]; then exit 1; fi
 
       - name: Output Error
