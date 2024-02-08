@@ -38,8 +38,11 @@ jobs:
 
       - name: Perform Verification
         run: |
-          OUTPUT=`verifyta 0.xml 0.xml.q --summary`
-          echo $OUTPUT
-          RESULT=`echo $OUTPUT | grep NOT`
-          if [ -n $RESULT ]; then exit 1; fi
+          echo "OUTPUT=`verifyta 0.xml 0.xml.q --summary`" >> "$GITHUB_ENV"
+          echo "RESULT=`echo $OUTPUT | grep NOT`" > "$GITHUB_ENV"
+          # if [ -n $RESULT ]; then exit 1; fi
+
+      - name: Output Error
+        if: {{ env.RESULT != '' }}
+        run: exit 1
 
