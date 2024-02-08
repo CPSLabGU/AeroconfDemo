@@ -65,7 +65,7 @@ final class ConverterTests: XCTestCase {
     func testConversion() throws {
         let arrangement = Converter.Arrangement()
         let verifier = ArrangementVerifier(arrangement: arrangement)
-        try verifier.generateKripkeStructure(formats: [.graphviz, .uppaal])
+        try verifier.generateKripkeStructure(formats: [.uppaal()])
     }
 
 }
