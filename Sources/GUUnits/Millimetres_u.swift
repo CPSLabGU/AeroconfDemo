@@ -57,7 +57,7 @@
 import CGUUnits
 
 /// A Type-Safe implementation of `millimetres_u`.
-public struct Millimetres_u {
+public struct Millimetres_u: Hashable, Codable, Sendable {
 
     /// The underlying C value.
     public let rawValue: millimetres_u

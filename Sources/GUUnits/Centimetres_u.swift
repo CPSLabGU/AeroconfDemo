@@ -57,7 +57,7 @@
 import CGUUnits
 
 /// A Type-Safe implementation of `centimetres_u`.
-public struct Centimetres_u {
+public struct Centimetres_u: Hashable, Codable, Sendable {
 
     /// The underlying C type.
     public let rawValue: centimetres_u
