@@ -68,4 +68,11 @@ public struct Millimetres_u {
         self.rawValue = rawValue
     }
 
+    /// Initialise this type with a value in centimetres. The value is converted to millimetres during this
+    /// initialisation.
+    /// - Parameter value: The value in centimetres.
+    public init(_ value: Centimetres_u) {
+        self.rawValue = cm_u_to_mm_u(value.rawValue)
+    }
+
 }

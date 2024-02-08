@@ -70,4 +70,10 @@ final class Millimetres_uTests: XCTestCase {
         XCTAssertEqual(newInstance.rawValue, raw)
     }
 
+    /// Test centimetre conversion.
+    func testCMConversionInit() {
+        let newInstance = Millimetres_u(Centimetres_u(rawValue: 10))
+        XCTAssertEqual(newInstance.rawValue, raw)
+    }
+
 }
