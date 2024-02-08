@@ -1,4 +1,4 @@
-// Centimetres_uTests.swift
+// Centimetres_u+numericInitialisation.swift
 // AeroconfDemo
 // 
 // Created by Morgan McColl.
@@ -55,22 +55,14 @@
 // 
 
 import CGUUnits
-@testable import GUUnits
-import XCTest
 
-/// Test class for ``Centimetres_u``.
-final class Centimetres_uTests: XCTestCase {
+/// Add initialisers for numeric types.
+extension Centimetres_u {
 
-    /// Test the `init(rawValue:)` sets the correct properties.
-    func testInit() {
-        let raw = centimetres_u(10)
-        let newInstance = Centimetres_u(rawValue: raw)
-        XCTAssertEqual(newInstance.rawValue, raw)
-    }
-
-    /// Test UInt8 initialiser.
-    func testUInt8Init() {
-        XCTAssertEqual(Centimetres_u(UInt8(10)).rawValue, 10)
+    /// Initialise this type from a `UInt8` representation.
+    /// - Parameter value: The distance in centimetres.
+    public init(_ value: UInt8) {
+        self.init(rawValue: centimetres_u(value))
     }
 
 }
