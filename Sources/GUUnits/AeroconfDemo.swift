@@ -1,6 +1,10 @@
+/// Default struct.
 public struct AeroconfDemo {
+
+    /// Test text.
     public private(set) var text = "Hello, World!"
 
-    public init() {
-    }
+    /// Default init.
+    public init() {}
+
 }
