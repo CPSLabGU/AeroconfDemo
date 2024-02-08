@@ -29,9 +29,9 @@ jobs:
 
       - name: Run Tests
         run: |
-          scp .build/armv7-unknown-linux-gnueabihf/debug/${{ github.event.repository.name }}PackageTests.xctest runner@zybo.local:~
-          ssh runner@zybo.local bash -ic /home/runner/${{ github.event.repository.name}}PackageTests.xctest 
-          ssh runner@zybo.local rm ${{ github.event.repository.name }}PackageTests.xctest      
+          scp .build/armv7-unknown-linux-gnueabihf/debug/${{ github.event.repository.name }}PackageTests.xctest root@zybo.local:~
+          ssh root@zybo.local bash -ic /home/runner/${{ github.event.repository.name}}PackageTests.xctest 
+          ssh root@zybo.local rm ${{ github.event.repository.name }}PackageTests.xctest      
 
       - name: Get Kripke Structure
         run: scp runner@zybo.local:~/0.xml .
