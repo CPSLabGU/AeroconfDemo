@@ -61,6 +61,7 @@ extension Centimetres_u {
 
     /// Initialise this type from a `UInt8` representation.
     /// - Parameter value: The distance in centimetres.
+    @inlinable
     public init(_ value: UInt8) {
         self.init(rawValue: centimetres_u(value))
     }

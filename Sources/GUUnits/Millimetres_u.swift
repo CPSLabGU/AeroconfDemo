@@ -64,6 +64,7 @@ public struct Millimetres_u {
 
     /// Initialise this type with its underlying C value.
     /// - Parameter rawValue: The equivalent C type.
+    @inlinable
     public init(rawValue: millimetres_u) {
         self.rawValue = rawValue
     }
@@ -71,6 +72,7 @@ public struct Millimetres_u {
     /// Initialise this type with a value in centimetres. The value is converted to millimetres during this
     /// initialisation.
     /// - Parameter value: The value in centimetres.
+    @inlinable
     public init(_ value: Centimetres_u) {
         self.rawValue = cm_u_to_mm_u(value.rawValue)
     }

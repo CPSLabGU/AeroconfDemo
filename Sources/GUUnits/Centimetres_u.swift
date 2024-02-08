@@ -64,6 +64,7 @@ public struct Centimetres_u {
 
     /// Initialise this type with its underlying C value.
     /// - Parameter rawValue: The equivalent C type.
+    @inlinable
     public init(rawValue: centimetres_u) {
         self.rawValue = rawValue
     }
