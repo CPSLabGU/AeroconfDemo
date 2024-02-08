@@ -43,6 +43,6 @@ jobs:
           # if [ -n $RESULT ]; then exit 1; fi
 
       - name: Output Error
-        if: ${{ $RESULT != '' }}
+        if: ${{ env.RESULT != '' }}
         run: exit 1
 
