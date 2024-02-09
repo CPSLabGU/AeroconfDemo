@@ -9,3 +9,4 @@ A[] fsms._0.isFinished == 0 imply not deadlock
 
 */
 A[] fsms._0.isFinished == 1 imply fsms._0.variables.convertedValue.rawValue == fsms._0.environment._sensorReading.wrappedValue.value * 10
+A[] fsms._0.isFinished == 1 imply fsms._0.variables.convertedValue.rawValue == fsms._0.environment._sensorReading.wrappedValue.value * 8
