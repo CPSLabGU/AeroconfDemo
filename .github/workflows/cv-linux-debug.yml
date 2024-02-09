@@ -39,13 +39,9 @@ jobs:
       - name: Perform Verification
         id: verify
         run: |
-          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
-          echo "OUTPUT<<$EOF" >> $GITHUB_OUTPUT
-          echo "`verifyta 0.xml 0.xml.q --summary`" >> $GITHUB_OUTPUT
-          echo "$EOF" >> $GITHUB_OUTPUT
-          echo "RESULT=`echo $OUTPUT | grep NOT`" > "$GITHUB_ENV"
-          echo "${{ steps.verify.outputs.OUTPUT }}"
-          # if [ -n $RESULT ]; then exit 1; fi
+          verifyta 0.xml 0.xml.q --summary > output.txt
+          echo "RESULT=`cat output.txt | grep NOT`" >> "$GITHUB_ENV"
+          cat output.txt
 
       - name: Output Error
         if: ${{ env.RESULT != '' }}
