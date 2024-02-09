@@ -1,0 +1,49 @@
+name: Swift Debug CV
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+
+  exec-cv-debug:
+    runs-on: aeroconf 
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Clear cache
+        run: |
+          swift package purge-cache || true
+          swift package reset
+          swift package clean
+
+      - name: Build Tests (Linux host)
+        if: ${{ runner.os == 'Linux' }}
+        run: |
+          PKG_CONFIG_PATH="/usr/local/armv7-unknown-linux-gnueabihf/staging/lib/pkgconfig:${PKG_CONFIG_PATH}" swift build --build-tests --destination /usr/local/armv7-unknown-linux-gnueabihf/destination.json
+
+      - name: Run Tests
+        run: |
+          scp .build/armv7-unknown-linux-gnueabihf/debug/${{ github.event.repository.name }}PackageTests.xctest root@zybo.local:~
+          ssh root@zybo.local bash -ic /home/root/${{ github.event.repository.name}}PackageTests.xctest 
+          ssh root@zybo.local rm ${{ github.event.repository.name }}PackageTests.xctest      
+
+      - name: Get Kripke Structure
+        run: scp root@zybo.local:~/0.xml .
+
+      - name: Perform Verification
+        id: verify
+        run: |
+          verifyta 0.xml 0.xml.q --summary > output.txt
+          echo "RESULT=`cat output.txt | grep NOT`" >> "$GITHUB_ENV"
+          cat output.txt
+
+      - name: Output Error
+        if: ${{ env.RESULT != '' }}
+        run: exit 1
+
